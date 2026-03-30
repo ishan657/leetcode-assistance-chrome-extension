@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode Whisper",
+  "version": "3.0",
+  "description": "AI mentor for coding platforms",
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "permissions": ["storage", "activeTab", "scripting"],
+
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://practice.geeksforgeeks.org/*",
+    "https://www.geeksforgeeks.org/*",
+    "https://codeforces.com/*"
+  ],
+
+  "action": {
+    "default_popup": "index.html"
+  },
+
+  "background": {
+    "service_worker": "src/background/background.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://leetcode.com/problems/*",
+        "https://practice.geeksforgeeks.org/problems/*",
+        "https://www.geeksforgeeks.org/problems/*",
+        "https://codeforces.com/problemset/problem/*",
+        "https://codeforces.com/contest/*/problem/*"
+      ],
+      "js": ["src/content/content.js"]
+    }
+  ]
+}
